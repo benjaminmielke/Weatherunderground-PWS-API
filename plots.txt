@@ -1,0 +1,40 @@
+#Plots
+fig = plt.figure(figsize=(30,25))
+fig.subplots_adjust(hspace=.8)
+ax1 = fig.add_subplot(311)
+ax2 = fig.add_subplot(312)
+ax3 = fig.add_subplot(313)
+
+ax1.plot( resp_date_df['Timestamp_Local'],resp_date_df['Temp_Avg'], color='red')
+plt.setp(ax1.xaxis.get_majorticklabels(), rotation=90)
+ax1.set_xlabel('Timestamp', fontsize=20)
+ax1.set_ylabel('Temperature(F)',fontsize=20)
+ax1.set_title(f'Average Hourly Temperature for {date}', fontsize=40)
+ax1.xaxis.grid(linewidth=1.7)
+ax1.yaxis.grid()
+ax5 = ax1.twinx()
+ax5.scatter(resp_date_df['Timestamp_Local'], resp_date_df['Temp_High'], color='darkred')
+ax5.scatter(resp_date_df['Timestamp_Local'], resp_date_df['Temp_Low'], color='darkblue')
+
+
+ax2.plot( resp_date_df['Timestamp_Local'],resp_date_df['PrecipTotal'], color='green')
+plt.setp(ax2.xaxis.get_majorticklabels(), rotation=90)
+ax2.set_xlabel('Timestamp',fontsize=20)
+ax2.set_ylabel('Total Precipitation(in)',fontsize=20)
+ax2.set_title(f'Hourly Precipitation Toal for {date}', fontsize=40)
+ax2.xaxis.grid(linewidth=1.7)
+ax2.yaxis.grid()
+
+
+ax3.plot( resp_date_df['Timestamp_Local'],resp_date_df['WindSpeed_Avg'])
+plt.setp(ax3.xaxis.get_majorticklabels(), rotation=90)
+ax3.set_xlabel('Timestamp',fontsize=20)
+ax3.set_ylabel('Average Wind Speed(mph)',fontsize=20)
+ax3.set_title(f'Hourly Average Wind Speed and Direction for {date}', fontsize=40)
+ax3.xaxis.grid(linewidth=1.7)
+ax3.yaxis.grid()
+ax4 = ax3.twinx()
+ax4.scatter(resp_date_df['Timestamp_Local'], resp_date_df['WindDir_Avg'], color='darkblue')
+ax4.set_ylabel('Wind Direction(degree)',fontsize=20)
+
+plt.show()
