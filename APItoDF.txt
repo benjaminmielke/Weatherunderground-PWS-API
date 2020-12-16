@@ -1,7 +1,0 @@
-#Create raw Pandas DataFrame from WeatherUnderground API from key for historical date
-resp_date_df = pd.DataFrame()
-resp_date_json = resp_new_histdates.json()
-resp_date_df = pd.json_normalize(resp_date_json, 'observations')
-resp_date_df.columns = column_names
-resp_date_df.insert(0,'Ob_Index', list(range(numrows_PWSdata,numrows_PWSdata+len(resp_date_df['Timezone']))))
-	
